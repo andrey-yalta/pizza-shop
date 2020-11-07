@@ -11,10 +11,10 @@ export const Sort=(props)=>{
     }
 
     const handleOutsideClick =(e)=>{
-
-        if(!e.path.includes(sortRef.current)){
-            setVisibleSort(false);
-        }
+// не работает на сфари ?
+        // if(!e.path.includes(sortRef.current)){
+        //     setVisibleSort(false);
+        // }
     }
     React.useEffect(()=>{
         document.body.addEventListener("click",handleOutsideClick)
@@ -23,6 +23,7 @@ export const Sort=(props)=>{
    return <div className="sort" ref={sortRef}>
         <div className="sort__label">
             <svg
+                className={visibleSort ? "rotated":""}
                 width="10"
                 height="6"
                 viewBox="0 0 10 6"
