@@ -1,9 +1,8 @@
 import React from "react";
 
-
-
 export const Cart =()=>{
     return(
+
         <div className="wrapper">
             <div className="content">
                  <div className="container container--cart">
@@ -300,7 +299,7 @@ export const Cart =()=>{
                 </div>
             </div>
         </div>
-        // <div>{pizzas.map(u=><div><span>{u.id}</span></div>)}</div>
+
     )
 }
 

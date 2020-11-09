@@ -1,14 +1,22 @@
 import React from "react";
-export const Sort=(props)=>{
+import {useDispatch, useSelector} from "react-redux";
+import {setSelectedSortBy} from "../../../redux/pizza-reducer";
+export const Sort= React.memo(()=>{
+    const sortsArray = useSelector(state => state.homePage.sortsArray);
+    const SelectedSortBy = useSelector(state => state.homePage.SelectedSortBy);
+    const activeLabel = sortsArray[SelectedSortBy].name;
+    const dispatch = useDispatch();
+    const [activeItem, setActiveItem] = React.useState(0);
+
+    const onSelectSortType = React.useCallback((type) => {
+        dispatch(setSelectedSortBy(type));
+        setVisibleSort(false);
+        setActiveItem(type);
+    }, []);
+
     const [visibleSort, setVisibleSort] = React.useState(false);
     const sortRef = React.useRef()
 
-    const [activeItem, setActiveItem] = React.useState(0);
-    const activeLabel = props.items[activeItem];
-    const onSelectItem = (index)=>{
-        setActiveItem(index);
-        setVisibleSort(false);
-    }
 
     const handleOutsideClick =(e)=>{
 // не работает на сфари ?
@@ -20,7 +28,9 @@ export const Sort=(props)=>{
         document.body.addEventListener("click",handleOutsideClick)
     },[])
 
-   return <div className="sort" ref={sortRef}>
+    console.log("render sort")
+
+    return <div className="sort" ref={sortRef}>
         <div className="sort__label">
             <svg
                 className={visibleSort ? "rotated":""}
@@ -38,17 +48,17 @@ export const Sort=(props)=>{
             <b>Сортировка по:</b>
             <span onClick={()=>setVisibleSort(!visibleSort)}>{activeLabel}</span>
         </div>
-       {visibleSort && <div  className="sort__popup">
-           <ul  >
-               {props.items && props.items.map((name,index)=>(
-                   <li className={activeItem === index? "active":""}
-                       onClick={()=>onSelectItem(index)}
-                       key={`${name}_${index}`}
-                   >
-                       {name}
-                   </li>
-               ))}
-           </ul>
-       </div>}
+        {visibleSort && <div  className="sort__popup">
+            <ul  >
+                {sortsArray && sortsArray.map((name,index)=>(
+                    <li className={activeItem === index? "active":""}
+                        onClick={()=>onSelectSortType(index)}
+                        key={`${name}_${index}`}
+                    >
+                        {name.name}
+                    </li>
+                ))}
+            </ul>
+        </div>}
     </div>
-}
+})
