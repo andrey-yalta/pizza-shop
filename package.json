@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^12.2.0",
     "axios": "^0.21.0",
     "classnames": "^2.2.6",
+    "http-proxy-middleware": "^1.0.6",
     "json-server": "^0.16.2",
     "node-sass": "^4.14.1",
     "prop-types": "^15.7.2",
@@ -28,7 +29,7 @@
     "eject": "react-scripts eject",
     "db-server": "npx json-server --watch public/db.json --port=3001"
   },
-  "proxy": "http://localhost:3001",
+
   "eslintConfig": {
     "extends": [
       "react-app",
