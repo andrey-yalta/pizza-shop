@@ -16,6 +16,7 @@ let initialState = {
                  { name: 'цене', type: 'price', order: 'desc' },
                  { name: 'алфавит', type: 'name', order: 'asc' }]
 
+
 };
 
 const pizzaReducer = (state = initialState, action) => {

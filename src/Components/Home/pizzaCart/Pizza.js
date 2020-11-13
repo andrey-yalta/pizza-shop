@@ -4,7 +4,7 @@ import PropTypes from"prop-types"
 
 export const Pizza =(props)=>{
     const[activeType,setActiveType] = React.useState(props.types[0])
-    const[activeSize,setActiveSize] = React.useState(props.sizes[0])
+    const[activeSize,setActiveSize] = React.useState(0)
     const availableTypes = ["тонкое","традиционное"]
     const availableSize =[26,30,40]
     const onSelectType = (index)=>{
@@ -13,6 +13,18 @@ export const Pizza =(props)=>{
     const onSelectSize = (index)=>{
         setActiveSize(index);
     }
+
+    const onAddPizza = () => {
+        const obj = {
+            id:props.id,
+            name:props.name,
+            imageUrl:props.imageUrl,
+            price:props.price,
+            size: availableSize[activeSize],
+            type: availableTypes[activeType],
+        };
+        props.handleAppPizza(obj);
+    };
 
     return(
         <div className="pizza-block">
@@ -32,7 +44,7 @@ export const Pizza =(props)=>{
             </div>
             <div className="pizza-block__bottom">
                 <div className="pizza-block__price">от {props.price} ₽</div>
-                <div className="button button--outline button--add">
+                <button onClick={onAddPizza} className="button button--outline button--add">
                     <svg
                         width="12"
                         height="12"
@@ -47,8 +59,8 @@ export const Pizza =(props)=>{
                     </svg>
 
                     <span>Добавить</span>
-                    <i>2</i>
-                </div>
+                    { props.AddedPizzaItems &&<i>{props.AddedPizzaItems}</i>}
+                </button>
             </div>
         </div>
     )
