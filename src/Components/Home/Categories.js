@@ -4,6 +4,7 @@ import {setSelectedCategory} from "../../redux/pizza-reducer";
 
 
 export const Categories = React.memo(()=>{
+    //  реакт мемо - это контроль что компонента перезагрузится только тогда, когда что-то изменится в стейте
         const dispatch = useDispatch();
 
         const SelectedCategory = useSelector(state => state.homePage.SelectedCategory);

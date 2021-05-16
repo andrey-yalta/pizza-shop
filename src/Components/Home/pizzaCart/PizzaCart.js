@@ -8,7 +8,9 @@ import {addPizzaToCart} from "../../../redux/cart-reducer";
 export const PizzaCart=()=>{
 
     const dispatch = useDispatch();
+
     const pizzas = useSelector(state => state.homePage.pizzas);
+
     const SelectedCategory = useSelector(state => state.homePage.SelectedCategory);
     const SelectedSortBy = useSelector(state => state.homePage.SelectedSortBy);
     const sortsArray = useSelector(state => state.homePage.sortsArray);
@@ -29,10 +31,8 @@ export const PizzaCart=()=>{
     if(isFetching){
         return (<div>>{arrayOfTen.map((u,index)=>  < Preloader key={index}/>)}</div>)
     }
+
     return(
-
             <div className="content__items">{pizzas.map((u,index)=><Pizza  AddedPizzaItems={pizzaItems[u.id]&& pizzaItems[u.id].items.length}  handleAppPizza={onPizzaAdd} key={index} {...u}/> )}</div>
-
-
     )
 }

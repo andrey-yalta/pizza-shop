@@ -30,7 +30,8 @@ export const Sort= React.memo(()=>{
 
     console.log("render sort")
 
-    return <div className="sort" ref={sortRef}>
+    return
+    <div className="sort" ref={sortRef}>
         <div className="sort__label">
             <svg
                 className={visibleSort ? "rotated":""}

@@ -158,10 +158,10 @@ export const removeItem = (id) =>{
     return {type:REMOVE_ITEM,id}
 };
 export const plusCartItem = (id) =>{
-    debugger;
+
     return {type:PLUS_CART_ITEM,id}
 };
 export const minusCartItem = (id) =>{
-    debugger;
+
     return {type:MINUS_CART_ITEM,id}
 };
