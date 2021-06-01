@@ -10,8 +10,7 @@ export const Cart =()=>{
     const {totalPrice,totalCount, items} = useSelector(({cartPage})=>cartPage);
     const dispatch = useDispatch();
     const addedPizzas = Object.keys(items).map(key=>{return items[key].items[0]})
-    // сложная хуйня, достаём элементы из обьекта с пиццами, добавляем их в массив, проходимся по всему массиву
-    // возвращаем первый элемент т.е вид пиццы ??? надо еще посмотреть
+
     const onClearCart =()=>{
         if(window.confirm("Вы действительно хотите очистить корзину?")){
         dispatch(clearCart());}

@@ -19,7 +19,7 @@ const getTotalPrice =arr =>arr.reduce((sum,obj)=>obj.price +sum,0);
 
 
 const _get = (obj, path) => {
-    // ёбаная хуйня чтобы доставать значения из пути и разделять их норально. Ёбаный костыль. 2:05:00
+
     const [firstKey, ...keys] = path.split('.');
     return keys.reduce((val, key) => {
         return val[key];
@@ -27,7 +27,7 @@ const _get = (obj, path) => {
 };
 
 const getTotalSum = (obj, path) => {
-    //тоже саоме что выше, это типа оптимизация и устанение дублирования кода но по факту ёбаный костыль
+
     return Object.values(obj).reduce((sum, obj) => {
         const value = _get(obj, path);
         return sum + value;
@@ -57,7 +57,7 @@ const cartReducer = (state = initialState, action) => {
             // надо устранить  дублирование кода
             // const totalCount = Object.keys(newItems).reduce((sum,key)=> newItems[key].items.length +sum,0 );
             // const totalPrice = Object.keys(newItems).reduce((sum,key)=> newItems[key].totalPrice +sum,0 );
-            const totalCount = getTotalSum(newItems, 'items.length');// устранение того что выше этим = ёбаный костыль
+            const totalCount = getTotalSum(newItems, 'items.length');
             const totalPrice = getTotalSum(newItems, 'totalPrice');
 
             return {
@@ -65,8 +65,7 @@ const cartReducer = (state = initialState, action) => {
                 items:newItems,
                 totalCount: totalCount,
                 totalPrice: totalPrice,
-                // сложная хуйня. типа проходится по всем элементам, достаёт сумму и плюсует в новый обьект
-                //надо изучить reduce
+
             }
         }
         case CLEAR_CART:{
